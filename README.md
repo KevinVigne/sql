@@ -5,7 +5,7 @@ services : Définit les différents services (conteneurs) qui composent ton appl
 
 mariadb:
 mariadb : Nom du service pour la base de données MariaDB.
-
+    
 image: mariadb:latest
 image: mariadb:latest : Spécifie l'image Docker à utiliser pour ce service. Ici, c'est l'image officielle de MariaDB avec le tag latest.
 
