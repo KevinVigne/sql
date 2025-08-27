@@ -64,10 +64,9 @@ VALUES( 1,'2025-07-12',31.7),(2 ,'2025-04-24',182);
 
 SELECT * FROM `order`;
 
-SELECT *
-FROM `customer`
-INNER JOIN `order` ON `customer`.`id` = `order`.`id_customer`
-WHERE `customer`.`id` = 1;
+SELECT * 
+FROM `customer` INNER JOIN `order` ON `customer`.`id` = `order`.`id_customer`
+WHERE `customer`.`id` = 2;
 
 
 /*
@@ -77,6 +76,15 @@ WHERE `customer`.`id` = 1;
     Modifiez la date d'inscription pour le client dont l’identifiant est 2.
     Vérifiez les modifications effectuées en consultant les données de la table Client.
 */
+
+ALTER TABLE `customer`
+ADD `phone_number` INT;
+
+ALTER TABLE `customer`
+
+
+
+
 
 /*
 #Exercice 4 :Suppression de champs et de données
