@@ -11,10 +11,14 @@ USE ma_base_de_donnees;
 
 -- Voir les tables dans la base de données : 
 
-SHOW database;
+SHOW tables;
+
+--Voir les Bases de données
+
+SHOW databases;
 
 -- Création d'une table :
-CREATE TABLE utilisateurs (
+CREATE TABLE `user` (
 id INT AUTO_INCREMENT PRIMARY KEY,
 nom VARCHAR(50),
 age INT
