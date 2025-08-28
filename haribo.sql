@@ -46,6 +46,8 @@ VALUES('Vera','marron','f'),
 ('Mohamed','marron','h'),
 ('Lamia','marron','f'),
 ('Catherine','marron','f');
+Patrick
+mila
 
 --5--
 /*
@@ -146,12 +148,12 @@ SELECT * FROM `candy`;
 SELECT * FROM `user`;
 
 --12-- Rajouter un nouveau user *Patriiiick* en forçant la numérotation de l'id par la valeur 150
-INSERT INTO `user`
+INSERT INTO `user`--on peux quand même ajouter à condition de donner une valeurs à CHAQUE champ
 VALUES(150,'Patriiiick','bleu','a'); 
- --on quand même ajouter à condition de donner une valeurs à CHAQUE champ
+ 
 --13-- Rajouter un nouveau user *Mila* SANS forcer la numérotation de l'id
 INSERT INTO `user`(`name`,`color_eye`,`gender`)
- ('Mila','marron','f');
+VALUES('Mila','marron','f');
 
 --14-- Changer le prénom du user qui a l'id 150 de *Patriiiick* à *Patrick*
 UPDATE `user`
@@ -159,16 +161,18 @@ set `name` = 'Patrick'
 WHERE `id_user` = 150 ;
 
 --15-- Rajouter dans la table eat que Patrick a mangé 5 Tagada purpule le 15 septembre 2023
-
+INSERT INTO `eat` (`id_user`,`id_candy`,`date_eat`,`quantity`)
+VALUES(150,2,'2023-09-15',5);
 
 --16-- Sélectionner tous les noms des bonbons
-
+SELECT `name` FROM `candy`;
 
 --17-- Sélectionner tous les noms des bonbons en enlevant les doublons
 
 
---18-- Récupérer les couleurs des yeux des users (Sélectionner plusieurs champs dans une table)
+--18-- Récupérer les couleurs des yeux ET LE NOM des users (Sélectionner plusieurs champs dans une table)
 
+SELECT `name`,`color_eyes` FROM `user`;
 
 --19-- Dédoublonner un résultat sur plusieurs champs
 
@@ -177,61 +181,66 @@ WHERE `id_user` = 150 ;
 SELECT * FROM `user` WHERE `id_user` = 5;
 
 --21-- Sélectionner tous les users qui ont les yeux marrons
-
+SELECT * FROM `user` WHERE `color_eyes` = 'marron';
 
 --22-- Sélectionner tous les users dont l'id est plus grand que 9
 
-
+SELECT * FROM `user` WHERE `id_user`> 9;
 --23-- Sélectionner tous les users SAUF celui dont l'id est 13 (soyons supersticieux !) :!\ il y a 2 façons de faire
-
+SELECT * FROM `user` WHERE `id_user` != 150;
 --24-- Sélectionner tous les users qui ont un id inférieur ou égal à 10
-
+SELECT * FROM `user` WHERE `id_user`<= 10;
 
 --25-- Sélectionner tous les users dont l'id est compris entre 7 et 11
-
+SELECT * FROM `user` WHERE `id_user`< 11 AND `id_user` > 7 ;
 
 --26-- Sélectionner les users dont le prénom commence par un *S*
-
+SELECT * FROM `user` WHERE `name` LIKE 'P%';
 
 --27-- Trier les users femmes par id décroissant
-
+SELECT * FROM `user` WHERE `gender` = 'f' ORDER BY `id_user` DESC;
 
 --28-- Trier les users hommes par prénom dans l'ordre alphabétique
-
+SELECT * FROM `user` WHERE `gender` = 'h' ORDER BY `name`;
 
 --29-- Trier les users en affichant les femmes en premier et en classant les couleurs des yeux dans l'ordre alphabétique
-
+SELECT * FROM `user`
+ORDER BY FIELD(`gender`, 'F', 'M'),`color_eyes` ASC; 
 
 --30-- Limiter l'affichage d'une requête de sélection de tous les users aux 3 premires résultats
-
+SELECT * FROM `user` LIMIT 3;
 
 --31-- Limiter l'affichage d'une requête de sélection de tous les users à partir du 3ème résultat et des 5 suivants
-
+SELECT * FROM `user` LIMIT 5 OFFSET 3;
 
 --32-- Afficher les 4 premiers users qui ont les yeux marron
-
+SELECT FROM `user` WHERE `color_eyes` = 'marron' LIMIT 4;
 
 --33-- Pareil mais en triant les prénoms dans l'ordre alphabétique
-
+SELECT FROM `user` WHERE `color_eyes` = 'marron' ORDER BY `name` LIMIT 4;
 
 --34-- Compter le nombre de users
-
+SELECT COUNT(*) FROM `user`;
 
 --35-- Compter le nombre de users hommes mais en changeant le nom de la colonne de résultat par *nb_users_H*
-
+SELECT COUNT(*) AS `nb_users_H`
+FROM `user`
+WHERE `gender`='h';
 
 --36-- Compter le nombre de couleurs d'yeux différentes
-
+SELECT `color_eyes`, COUNT(*)
+FROM `user`
+GROUP BY `color_eyes`;
 
 --37-- Afficher le prénom et les yeux du user qui a l'id le plus petit
-
+SELECT MIN(`id_user`) FROM `user`;
 
 --38-- Afficher le prénom et les yeux du user qui a l'id le plus grand /!\ 
 --c'est une requête imbriquée qu'il faut faire (requête sur le résultat d'une autre requête)
-
+SELECT `name`,`color_eyes` FROM `user` HAVING --MAX(`id_user`);
 
 --39-- Afficher les users qui ont les yeux bleu et vert
-
+SELECT * FROM `user` WHERE `color_eyes` = 'vert' OR `color_eyes` = 'bleu'
 
 --40-- A l'inverse maintenant, afficher les users qui n'ont pas les yeux bleu ni vert
 
