@@ -233,17 +233,17 @@ FROM `user`
 GROUP BY `color_eyes`;
 
 --37-- Afficher le prénom et les yeux du user qui a l'id le plus petit
-SELECT MIN(`id_user`) FROM `user`;
+SELECT MIN(`id_user`),`name`,`color_eyes` FROM `user`;
 
 --38-- Afficher le prénom et les yeux du user qui a l'id le plus grand /!\ 
 --c'est une requête imbriquée qu'il faut faire (requête sur le résultat d'une autre requête)
 SELECT `name`,`color_eyes` FROM `user` HAVING --MAX(`id_user`);
 
 --39-- Afficher les users qui ont les yeux bleu et vert
-SELECT * FROM `user` WHERE `color_eyes` = 'vert' OR `color_eyes` = 'bleu'
+SELECT * FROM `user` WHERE `color_eyes` = 'vert' OR `color_eyes` = 'bleu';
 
 --40-- A l'inverse maintenant, afficher les users qui n'ont pas les yeux bleu ni vert
-
+SELECT * FROM `user` WHERE `color_eyes` != 'vert' OR `color_eyes` != 'bleu';
 
 --41-- récupérer tous les users qui ont mangé des bonbons, avec le détail de leurs consommations
 
